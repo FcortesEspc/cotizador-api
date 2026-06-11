@@ -196,7 +196,7 @@ def cotizar(req: CotizacionRequest):
     if not req.tipos_trabajo and not req.descripcion:
         raise HTTPException(status_code=422, detail="Proporciona al menos tipos_trabajo o descripcion")
     try:
-        message = client.messages.create(model=MODEL, max_tokens=4096, system=SYSTEM_PROMPT,
+        message = client.messages.create(model=MODEL, max_tokens=8192, system=SYSTEM_PROMPT,
                                          messages=[{"role": "user", "content": build_prompt(req)}])
         texto = message.content[0].text
         return CotizacionResponse(cotizacion=texto, total_estimado=extract_total(texto),
@@ -214,7 +214,7 @@ def cotizar_stream(req: CotizacionRequest):
 
     def generate():
         try:
-            with client.messages.stream(model=MODEL, max_tokens=4096, system=SYSTEM_PROMPT,
+            with client.messages.stream(model=MODEL, max_tokens=8192, system=SYSTEM_PROMPT,
                                         messages=[{"role": "user", "content": build_prompt(req)}]) as stream:
                 full_text = ""
                 for text in stream.text_stream:
@@ -314,7 +314,7 @@ DATOS DEL CLIENTE:
 Genera cotización completa con fases, desglose de materiales y mano de obra, y resumen financiero."""
 
     try:
-        msg_cot = client.messages.create(model=MODEL, max_tokens=4096, system=SYSTEM_PROMPT,
+        msg_cot = client.messages.create(model=MODEL, max_tokens=8192, system=SYSTEM_PROMPT,
                                          messages=[{"role": "user", "content": cotizacion_prompt}])
         cotizacion_texto = msg_cot.content[0].text
         return {"analisis_plano": analisis, "cotizacion": cotizacion_texto,
