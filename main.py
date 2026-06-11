@@ -135,7 +135,7 @@ def cotizar(req: CotizacionRequest):
 
     try:
         message = client.messages.create(
-            model="claude-sonnet-4-20250514",
+            model="claude-sonnet-4-5",
             max_tokens=2048,
             system=SYSTEM_PROMPT,
             messages=[{"role": "user", "content": build_prompt(req)}]
@@ -167,7 +167,7 @@ def cotizar_stream(req: CotizacionRequest):
     def generate():
         try:
             with client.messages.stream(
-                model="claude-sonnet-4-20250514",
+                model="claude-sonnet-4-5",
                 max_tokens=2048,
                 system=SYSTEM_PROMPT,
                 messages=[{"role": "user", "content": build_prompt(req)}]
@@ -208,7 +208,7 @@ Responde SOLO con JSON válido, sin texto adicional, sin markdown:
 
     try:
         message = client.messages.create(
-            model="claude-sonnet-4-20250514",
+            model="claude-sonnet-4-5",
             max_tokens=300,
             messages=[{"role": "user", "content": prompt}]
         )
