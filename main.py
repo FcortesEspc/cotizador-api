@@ -58,7 +58,7 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
 
 # ── Prompts ───────────────────────────────────────────────────────────────────
 
-SYSTEM_PROMPT = """Eres un experto en presupuestos de construcción en México (CDMX), con 20 años de experiencia con Dacam Constructora y Hogar 911.
+SYSTEM_PROMPT = """Eres un experto en presupuestos de construcción en México (CDMX), con Dacam Constructora y Hogar 911 — Construyendo Confianza.
 
 Genera cotizaciones profesionales por fases. Formato EXACTO:
 
